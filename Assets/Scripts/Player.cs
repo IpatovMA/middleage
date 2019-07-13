@@ -6,53 +6,34 @@ public class Player : MonoBehaviour
 {
    public float speed = 10.0f;
    public float jampSpeed = 7f;
-    public int power = 70;
-    public int jumpPower = 1000;
-    public bool isFalling = false;
-    public float gravFactor = 0.2f;
+
+   public int PlayerHealth;
 
   //  private Vector2 defaultVelocity = new Vector2(10f, 0.0f);
     private Vector2  VelocityDir = new Vector2 (1f,0f);
-
+    void Start(){
+      GetComponent<Rigidbody2D>().velocity = new Vector2(speed*VelocityDir.x, 0f);
+      PlayerHealth = 5;
+    }
 
     // Update is called once per frame
     void Update()
     {
     }
 
-        void FixedUpdate()
-        {
-      /*  if (!isFalling){
-        GetComponent<Rigidbody2D>().AddForce(Vector2.right*power);
-          } else {
-          
-          }*/ 
-        //GetComponent<Rigidbody2D>().AddForce(Vector2.right*power);
-        //скорость по направлению velocitydir
-         GetComponent<Rigidbody2D>().velocity = new Vector2(speed*VelocityDir.x, jampSpeed*VelocityDir.y);
-
-
-            if(Input.GetKey(KeyCode.Space)&&(!isFalling)){
-             //GetComponent<Rigidbody2D>().AddForce(Vector2.up*jumpPower);
-              VelocityDir += new Vector2(0f,1f);
-              //VelocityDir = VelocityDir;
-              isFalling = true;
+    void FixedUpdate()
+    {
+      
+      var speedv = GetComponent<Rigidbody2D>().velocity;
+      var newv = new Vector2(speed, speedv.y);
+      
+      if (Input.GetKeyDown (KeyCode.Space)&&(speedv.y==0)){
+            newv = newv + new Vector2(0, jampSpeed);
         }
-          if(isFalling){
-              VelocityDir += new Vector2(0f,-gravFactor);
-          }else {
-            VelocityDir = new Vector2(VelocityDir.x,0f);
-          }
-        }
+        GetComponent<Rigidbody2D>().velocity = newv;
 
-    void OnCollisionStay2D(Collision2D coll){
-      if(coll.gameObject.tag == "Ground"){
-        isFalling=false;
-      }
+
     }
 
-    void GetVelocityDir(){
-     // VelocityDir =
-    }
 
 }
