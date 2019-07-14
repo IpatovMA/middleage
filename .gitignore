@@ -5,3 +5,5 @@ ProjectSettings/
 Temp/
 middleages.sln
 Assembly-CSharp.csproj
+.vscode/
+*.meta
