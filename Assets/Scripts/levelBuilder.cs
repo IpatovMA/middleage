@@ -5,9 +5,9 @@ using UnityEngine;
 public class levelBuilder : MonoBehaviour
 {
     public GameObject[] Blocks;
-  //public GameObject PatternBlock;
+    public GameObject FinalBlock;
     public Transform BlockSpawnerPos;
-  public int BlockCount =0;
+    private int BlockCount =0;
     public float NewPos = 5.0f;
     public int LevelLenght = 1;
     public int blockVariants = 5;
@@ -27,14 +27,15 @@ public class levelBuilder : MonoBehaviour
 
     }
 
-    void levelCreation(){
+    private void levelCreation(){
       for (BlockCount=1; BlockCount< LevelLenght; BlockCount++){
         Block();
       }
+      block = Instantiate (FinalBlock, BlockSpawnerPos.position,Quaternion.identity) as GameObject;
     }
 
 
-    public void Block()
+    private void Block()
     {
       block = Instantiate (Blocks[Random.Range(0,blockVariants)], BlockSpawnerPos.position,Quaternion.identity) as GameObject;
       Vector3 temp = BlockSpawnerPos.position;

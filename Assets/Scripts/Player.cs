@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour
 {
@@ -22,7 +24,6 @@ public class Player : MonoBehaviour
       GetComponent<Rigidbody2D>().velocity = new Vector2(defaultSpeed, 0f);
       _state = State.Run;
       _health = 5;
-      Debug.Log(_health);
     }
 
     // Update is called once per frame
@@ -54,14 +55,9 @@ public class Player : MonoBehaviour
           speedtoaccel = 0.0f;
           
         }
-//          Debug.Log(speedtoaccel+" "+speedv.y);
-
-
       }
-
-        
+     
         GetComponent<Rigidbody2D>().velocity = newv;
-      Debug.Log(_state);
     }
 
 
@@ -70,9 +66,13 @@ public class Player : MonoBehaviour
         _health--;
         coll.gameObject.GetComponent<SpriteRenderer>().color = new Color (0.5f, 0.5f, 0.5f, 1);
        _state = State.Fall;
-      
+      }
+      if(coll.gameObject.tag == "Door"){
+      SceneManager.LoadScene(1);
+      Debug.Log("qweqwe");
 
-      }  }
+      }
+    }
       
 
 }

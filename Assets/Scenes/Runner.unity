@@ -203,7 +203,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: text
+  m_Text: health
 --- !u!222 &77885897
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -396,9 +396,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b0b145384dd6604487d8f2c6bac4ea5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultSpeed: 10
-  accel: 0
-  jampSpeed: 6
+  defaultSpeed: 6
+  accel: 0.1
+  jampSpeed: 5
 --- !u!1 &1217482502
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,7 +584,7 @@ PrefabInstance:
     - target: {fileID: 3462673582888040982, guid: 14cc4d65474a8174bbcec9c582d719ad,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.06459447
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3462673582888040982, guid: 14cc4d65474a8174bbcec9c582d719ad,
         type: 3}
