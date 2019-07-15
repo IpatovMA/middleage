@@ -13,6 +13,7 @@ public class DialogMaker : MonoBehaviour
 
     public GameObject AnswerButtonsPref;
     private GameObject AnswerButtons;
+    private GameObject FailedCloud;
     private GameObject myCloud;
     private int myCounter=0;
     private GameObject himCloud;
@@ -25,11 +26,16 @@ public class DialogMaker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (Config.isDead){
+            FailedCloud= Instantiate (TextCloud, new Vector3(TextCloudPosition.position.x,TextCloudPosition.position.y+distance*0.25f,TextCloudPosition.position.z),Quaternion.identity) as GameObject;
+            WriteText("Mission failed",FailedCloud);
+        }
+
         AnswerButtons = Instantiate (AnswerButtonsPref, Vector3.zero,Quaternion.identity) as GameObject;
             AnswerButtons.SetActive(false);
 
-        myCloud  = Instantiate (TextCloud, TextCloudPosition.position,Quaternion.identity) as GameObject;
-        himCloud  = Instantiate (TextCloud, new Vector3(TextCloudPosition.position.x+distance,TextCloudPosition.position.y,TextCloudPosition.position.z),Quaternion.identity) as GameObject;
+        myCloud  = Instantiate (TextCloud, new Vector3(TextCloudPosition.position.x-distance/2,TextCloudPosition.position.y,TextCloudPosition.position.z),Quaternion.identity) as GameObject;
+        himCloud  = Instantiate (TextCloud, new Vector3(TextCloudPosition.position.x+distance/2,TextCloudPosition.position.y,TextCloudPosition.position.z),Quaternion.identity) as GameObject;
                myCloud.SetActive(false);
                himCloud.SetActive(false);
 

@@ -11,7 +11,6 @@ public class Player : MonoBehaviour
     private float speedtoaccel = 0f;
 
     public float jampSpeed = 7f;
-    public static int _health;
     public enum State { Run, Fall, GoAway }
 
     private State _state;
@@ -19,23 +18,34 @@ public class Player : MonoBehaviour
     private Vector2 speedv;
     private Vector2 newv;
 
+   // private bool isJump = false;
+
 
     void Start()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(defaultSpeed, 0f);
         _state = State.Run;
-        _health = 5;
 
     }
 
     // Update is called once per frame
-    void Update()
-    {
-    }
-
     void FixedUpdate()
     {
+
+       /*  if (Input.touchCount > 0)
+           {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            { isJump=true;
+            } else {isJump=false;}
+           }
+
+          if (Input.GetKeyDown(KeyCode.Space))
+            { isJump=true;
+            } else {isJump=false;} */
+
         speedv = GetComponent<Rigidbody2D>().velocity;
+        
        // _position = ;
         if (_state == State.Run)
         {
@@ -51,7 +61,7 @@ public class Player : MonoBehaviour
 
         if (_state == State.Fall)
         {
-
+            
             newv = new Vector2(speedtoaccel, speedv.y);
             speedtoaccel += accel;
             if (speedtoaccel >= defaultSpeed)
@@ -63,6 +73,18 @@ public class Player : MonoBehaviour
         }
 
         GetComponent<Rigidbody2D>().velocity = newv;
+
+        if (Config.PlayerHealth == 0){
+            _state = State.GoAway;
+
+        }
+
+        if (_state == State.GoAway){
+            newv = newv*0.01f;
+            Invoke("SceneChanger", 2f);
+
+        }
+
     }
 
 
@@ -70,16 +92,14 @@ public class Player : MonoBehaviour
     {
         if (coll.gameObject.tag == "Border")
         {
-            _health--;
+            Config.PlayerHealth--;
             coll.gameObject.GetComponent<SpriteRenderer>().color = new Color(0.5f, 0.5f, 0.5f, 1);
             _state = State.Fall;
         }
         if (coll.gameObject.tag == "Door")
         {
-            SceneManager.LoadScene(1);
+            _state = State.GoAway;
            // Invoke("SceneChanger", 2f);
-            Debug.Log("qweqwe");
-
         }
     }
 

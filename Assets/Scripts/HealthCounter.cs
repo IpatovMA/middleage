@@ -27,6 +27,6 @@ public class HealthCounter : MonoBehaviour
     void Update()
     {
         //Health = "HEALTH: " + Player.PlayerHealth;
-        GetComponent<Text>().text = "HEALTH: " + Player._health; 
+        GetComponent<Text>().text = "HEALTH: " + Config.PlayerHealth; 
     }
 }
