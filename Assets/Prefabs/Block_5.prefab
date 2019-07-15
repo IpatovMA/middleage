@@ -459,7 +459,7 @@ GameObject:
   - component: {fileID: 2247397450270888792}
   m_Layer: 0
   m_Name: New Sprite (7)
-  m_TagString: Untagged
+  m_TagString: Door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -17,7 +17,9 @@ public class DialogMaker : MonoBehaviour
     private int myCounter=0;
     private GameObject himCloud;
     private int himCounter=0;
+    private int messCounter=0;
     private int whoTalk = 1;
+    private bool toChoose = false;
     
 
     // Start is called before the first frame update
@@ -25,37 +27,37 @@ public class DialogMaker : MonoBehaviour
     {
         AnswerButtons = Instantiate (AnswerButtonsPref, Vector3.zero,Quaternion.identity) as GameObject;
             AnswerButtons.SetActive(false);
-                    Debug.Log(AnswerButtons.activeSelf);
+
+        myCloud  = Instantiate (TextCloud, TextCloudPosition.position,Quaternion.identity) as GameObject;
+        himCloud  = Instantiate (TextCloud, new Vector3(TextCloudPosition.position.x+distance,TextCloudPosition.position.y,TextCloudPosition.position.z),Quaternion.identity) as GameObject;
+               myCloud.SetActive(false);
+               himCloud.SetActive(false);
 
     }
 
-    // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space)&&(myCounter+himCounter<TotalMesseangeNumber)){
-           if (whoTalk>0){//если четное касание
-                if(myCounter==0){
-            myCloud  = Instantiate (TextCloud, TextCloudPosition.position,Quaternion.identity) as GameObject;
-                }
+        messCounter = myCounter+himCounter;
+        if (Input.GetKeyDown(KeyCode.Space)&&(messCounter<TotalMesseangeNumber)){
+           if (whoTalk>0){
+               himCloud.SetActive(false);
+               myCloud.SetActive(true);
                WriteText(mytext[myCounter],myCloud);
                myCounter++;  
-           } else if (whoTalk<0) {//если нечетное
-                if(himCounter==0){
-            himCloud  = Instantiate (TextCloud, new Vector3(TextCloudPosition.position.x+distance,TextCloudPosition.position.y,TextCloudPosition.position.z),Quaternion.identity) as GameObject;
-                }
-
+           } else if (whoTalk<0) {
+               myCloud.SetActive(false);
+               himCloud.SetActive(true);
                WriteText(himtext[himCounter],himCloud);
-                
                himCounter++; 
- 
            }
             whoTalk = -whoTalk;  
-            if (myCounter+himCounter==TotalMesseangeNumber)  {myCounter++;}
-
+            if (messCounter==TotalMesseangeNumber)  {
+                Debug.Log("qqwe");
+                messCounter++;}
        }
-        Debug.Log(AnswerButtons.activeSelf);
-        if ((myCounter+himCounter>TotalMesseangeNumber)&&!AnswerButtons.activeSelf){
+
+        Debug.Log(messCounter+"  "+TotalMesseangeNumber);
+        if ((messCounter>=TotalMesseangeNumber)&&!AnswerButtons.activeSelf){
             AnswerButtons.SetActive(true);
         }
 

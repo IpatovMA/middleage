@@ -7,9 +7,12 @@ public class levelBuilder : MonoBehaviour
     public GameObject[] Blocks;
     public GameObject FinalBlock;
     public Transform BlockSpawnerPos;
+    public Vector3 StartSpawnerPos;
+    
     private int BlockCount =0;
     public float NewPos = 5.0f;
     public int LevelLenght = 1;
+    public static Vector3 vLevelLenth;
     public int blockVariants = 5;
 
     private float waitTime = 2.0f;
@@ -18,7 +21,9 @@ public class levelBuilder : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        StartSpawnerPos = BlockSpawnerPos.position;
         levelCreation();
+     //  vLevelLenth = new Vector3 (BlockSpawnerPos.position.x,BlockSpawnerPos.position.y) - StartSpawnerPos;
     }
 
     // Update is called once per frame
