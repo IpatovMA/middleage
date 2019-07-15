@@ -8,7 +8,7 @@ public class SceneChanger : MonoBehaviour
 {
 
     public void ToRunner(){
-    SceneManager.LoadScene(0);
+    SceneManager.LoadScene("Runner");
 
     }
 }

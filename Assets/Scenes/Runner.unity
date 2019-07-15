@@ -249,7 +249,7 @@ MonoBehaviour:
   BlockSpawnerPos: {fileID: 304001207}
   StartSpawnerPos: {x: 0, y: 0, z: 0}
   NewPos: 5
-  LevelLenght: 100
+  LevelLenght: 10
   blockVariants: 2
 --- !u!4 &304001207
 Transform:

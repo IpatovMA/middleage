@@ -9,9 +9,12 @@ public class Config : MonoBehaviour
     public static float scale2;
     public static float scale3;
     public static bool isDead;
+    public static int LevelState=1;
+    public static int levelComplete=0;
+    public static int Choose;
 
     
-  //  public static enum currentScene {}
+    //  public static enum currentScene {}
     // Start is called before the first frame update
     void Start()
     {

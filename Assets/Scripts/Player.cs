@@ -104,7 +104,8 @@ public class Player : MonoBehaviour
     }
 
     void SceneChanger(){
-            SceneManager.LoadScene(1);
+            Config.LevelState=3;
+            SceneManager.LoadScene("Dialog");
 
     }
 
